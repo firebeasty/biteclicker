@@ -5,7 +5,7 @@ let handBase;
 
 let nailRot = 0;
 
-let nailTransform = [[176,467,-34], [274,296,-10], [360,280,0], [459,279,10.5],[532,354,23]];
+let nailTransform = [[202,498,-35], [277,323,-10], [360,280,0], [453,307,10.5],[516,390,23]];
 
 function preload() {
   handBase = loadImage('images/hand_base.png');
@@ -37,6 +37,18 @@ function draw() {
   pop();
   }
 
+  /* Nail Calibrator  */
+  //   push();
+  //   translate(mouseX,mouseY);
+  // rotate(nailRot);
+  //   fill(220,230,255);
+  //   rect(-nailWidth/2,-nailLength,nailWidth,nailLength);
+  //   fill(255);
+  //   rect(-nailWidth/2,-nailLength-15,nailWidth,15,7.5,7.5,0,0);
+  // pop();
+
+
+  print(mouseX,mouseY,nailRot);
       image(handMask,(width-720)/2,height-720);
 
 
