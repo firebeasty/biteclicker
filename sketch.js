@@ -5,6 +5,8 @@ let handBase;
 
 let nailRot = 0;
 
+let nailTransform = [[176,467,-34], [274,296,-10], [360,280,0], [459,279,10.5],[532,354,23]];
+
 function preload() {
   handBase = loadImage('images/hand_base.png');
   handMask = loadImage('images/hand_mask.png')
@@ -23,16 +25,17 @@ function draw() {
 
     image(handBase,(width-720)/2,height-720);
 
-  push();
+  for (let j = 0; j < 5; j++){
 
-    translate(mouseX,mouseY);
-  rotate(nailRot);
+  push();
+    translate(nailTransform[j][0],nailTransform[j][1]);
+  rotate(nailTransform[j][2]);
     fill(220,230,255);
     rect(-nailWidth/2,-nailLength,nailWidth,nailLength);
     fill(255);
     rect(-nailWidth/2,-nailLength-15,nailWidth,15,7.5,7.5,0,0);
   pop();
-  print(mouseX,mouseY, nailRot);
+  }
 
       image(handMask,(width-720)/2,height-720);
 
