@@ -10,6 +10,8 @@ let nailTransform = [[202,498,-35], [277,323,-10], [360,280,0], [453,307,10.5],[
 function preload() {
   handBase = loadImage('images/hand_base.png');
   handMask = loadImage('images/hand_mask.png')
+  soundFormats('wav');
+  mySound = loadSound('audio/clip01');
 }
 
 function setup() {
@@ -65,6 +67,7 @@ function mouseClicked() {
     nailLength = 55;
   }
   navigator.vibrate(150);
+  mySound.play();
 }
 
 
