@@ -3,6 +3,10 @@ let nailWidth = 35;
 
 let handBase;
 
+let nailRot = 0;
+
+let nailTransform = [[176,467,-34], [274,296,-10], [360,280,0], [459,279,10.5],[532,354,23]];
+
 function preload() {
   handBase = loadImage('images/hand_base.png');
   handMask = loadImage('images/hand_mask.png')
@@ -10,6 +14,7 @@ function preload() {
 
 function setup() {
   createCanvas(720, 720);
+  angleMode(DEGREES);
 }
 
 function draw() {
@@ -17,29 +22,29 @@ function draw() {
   stroke(0);
   strokeWeight(4);
   strokeJoin(ROUND);
-  
-    image(handBase,(width-720)/2,height-720);  
-  
+
+    image(handBase,(width-720)/2,height-720);
+
+  for (let j = 0; j < 5; j++){
+
   push();
-  fill(220,230,255);
-  rect(width/2-nailWidth/2,height*0.75-height/4-nailLength-85,nailWidth,nailLength);
-  fill(255);
- //noStroke();
-  rect(width/2-nailWidth/2,height*0.75-height/4-nailLength-85-15,nailWidth,15,7.5,7.5,0,0);
+    translate(nailTransform[j][0],nailTransform[j][1]);
+  rotate(nailTransform[j][2]);
+    fill(220,230,255);
+    rect(-nailWidth/2,-nailLength,nailWidth,nailLength);
+    fill(255);
+    rect(-nailWidth/2,-nailLength-15,nailWidth,15,7.5,7.5,0,0);
+  pop();
+  }
+
+      image(handMask,(width-720)/2,height-720);
 
 
-  // fill('blue');
-  // ellipse(width/2,height*0.75-20,100,height/2);
-  // pop();
-  
-      image(handMask,(width-720)/2,height-720);  
 
-
-  
   if(nailLength < height/2-120) {
     nailLength+=0.2;
   }
-  
+
 }
 
 function mouseClicked() {
@@ -48,4 +53,13 @@ function mouseClicked() {
     nailLength = 55;
   }
   navigator.vibrate(150);
+}
+
+
+function keyPressed() {
+  if (keyCode === LEFT_ARROW) {
+    nailRot -= 0.5;
+  } else if (keyCode === RIGHT_ARROW) {
+    nailRot += 0.5;
+  }
 }
